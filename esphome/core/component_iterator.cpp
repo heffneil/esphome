@@ -175,6 +175,12 @@ void ComponentIterator::advance() {
       break;
 #endif
 
+#ifdef USE_RADIO_FREQUENCY
+    case IteratorState::RADIO_FREQUENCY:
+      this->process_platform_item_(App.get_radio_frequencies(), &ComponentIterator::on_radio_frequency);
+      break;
+#endif
+
 #ifdef USE_EVENT
     case IteratorState::EVENT:
       this->process_platform_item_(App.get_events(), &ComponentIterator::on_event);

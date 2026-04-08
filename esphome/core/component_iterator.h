@@ -21,6 +21,11 @@ namespace infrared {
 class Infrared;
 }  // namespace infrared
 #endif
+#ifdef USE_RADIO_FREQUENCY
+namespace radio_frequency {
+class RadioFrequency;
+}  // namespace radio_frequency
+#endif
 
 class ComponentIterator {
  public:
@@ -96,6 +101,9 @@ class ComponentIterator {
 #endif
 #ifdef USE_INFRARED
   virtual bool on_infrared(infrared::Infrared *infrared) = 0;
+#endif
+#ifdef USE_RADIO_FREQUENCY
+  virtual bool on_radio_frequency(radio_frequency::RadioFrequency *radio_frequency) = 0;
 #endif
 #ifdef USE_EVENT
   virtual bool on_event(event::Event *event) = 0;
@@ -179,6 +187,9 @@ class ComponentIterator {
 #endif
 #ifdef USE_INFRARED
     INFRARED,
+#endif
+#ifdef USE_RADIO_FREQUENCY
+    RADIO_FREQUENCY,
 #endif
 #ifdef USE_EVENT
     EVENT,

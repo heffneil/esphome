@@ -102,6 +102,9 @@
 #ifdef USE_INFRARED
 #include "esphome/components/infrared/infrared.h"
 #endif
+#ifdef USE_RADIO_FREQUENCY
+#include "esphome/components/radio_frequency/radio_frequency.h"
+#endif
 #ifdef USE_SERIAL_PROXY
 #include "esphome/components/serial_proxy/serial_proxy.h"
 #endif
@@ -276,6 +279,10 @@ class Application {
 
 #ifdef USE_INFRARED
   void register_infrared(infrared::Infrared *infrared) { this->infrareds_.push_back(infrared); }
+#endif
+
+#ifdef USE_RADIO_FREQUENCY
+  void register_radio_frequency(radio_frequency::RadioFrequency *rf) { this->radio_frequencies_.push_back(rf); }
 #endif
 
 #ifdef USE_SERIAL_PROXY
@@ -514,6 +521,11 @@ class Application {
 #ifdef USE_INFRARED
   auto &get_infrareds() const { return this->infrareds_; }
   GET_ENTITY_METHOD(infrared::Infrared, infrared, infrareds)
+#endif
+
+#ifdef USE_RADIO_FREQUENCY
+  auto &get_radio_frequencies() const { return this->radio_frequencies_; }
+  GET_ENTITY_METHOD(radio_frequency::RadioFrequency, radio_frequency, radio_frequencies)
 #endif
 
 #ifdef USE_SERIAL_PROXY
@@ -771,6 +783,9 @@ class Application {
 #endif
 #ifdef USE_INFRARED
   StaticVector<infrared::Infrared *, ESPHOME_ENTITY_INFRARED_COUNT> infrareds_{};
+#endif
+#ifdef USE_RADIO_FREQUENCY
+  StaticVector<radio_frequency::RadioFrequency *, ESPHOME_ENTITY_RADIO_FREQUENCY_COUNT> radio_frequencies_{};
 #endif
 #ifdef USE_SERIAL_PROXY
   StaticVector<serial_proxy::SerialProxy *, SERIAL_PROXY_COUNT> serial_proxies_{};
